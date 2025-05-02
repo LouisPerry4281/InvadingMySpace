@@ -5,18 +5,15 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    Vector2 moveDirection;
+    PlayerInputManager input;
 
     [SerializeField] float movementSpeed = 1;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    private void Update()
-    {
-        HandleInput();
+        input = PlayerInputManager.instance;
     }
 
     private void FixedUpdate()
@@ -26,13 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector2 movement = moveDirection * movementSpeed * Time.deltaTime;
+        Vector2 movement = input.GetInputDirection() * movementSpeed * Time.deltaTime;
         rb.linearVelocity = movement;
-    }
-
-    private void HandleInput()
-    {
-        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveDirection.Normalize();
     }
 }
