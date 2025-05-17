@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+
+
     [SerializeField] float reloadTime;
 
     bool isReloading = false;
